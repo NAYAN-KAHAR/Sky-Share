@@ -55,8 +55,11 @@ const HomePage = () => {
         setShowFile(files || []);
         setLoader(false);
       } catch (err) {
-          console.log(err?.response?.data?.message);
-      } 
+          console.log(err);
+      }
+       finally {
+       setLoader(false); // ✅ stop loader no matter what
+  }
   };
 
 

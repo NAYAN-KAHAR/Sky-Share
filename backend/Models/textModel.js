@@ -7,11 +7,9 @@ const contentSchema = new mongoose.Schema({
   ownerHash: {
     type: String,
     required: true,
-    unique: true
   },
   // Store text if available
   text: String,
-   
   files: [{
       fileUrl: String,       // Cloudinary URL
       filename: String,      // Original name of the file
