@@ -44,7 +44,7 @@ const HomePage = () => {
      if (!ownerHash || isText !== 'text') return;
      setLoader(true);
      try {
-        const res = await axios.get(`http://localhost:3000/api/text`, {
+        const res = await axios.get(`${import.meta.env.VITE_SERVAR_URL}/api/text`, {
            params: { ownerHash } });
 
         const files = res.data?.textContent?.files;
@@ -65,7 +65,7 @@ const fetchFiles = async () => {
   if (!ownerHash) return;
 
   try {
-    const res = await axios.get(`http://localhost:3000/api/text`, {
+    const res = await axios.get(`${import.meta.env.VITE_SERVAR_URL}/api/text`, {
       params: { ownerHash },
     });
     const files = res.data?.textContent?.files || [];
@@ -96,7 +96,7 @@ useEffect(() => {
       if (!textData || textData.trim() === '') return;
      
       try {
-        const res = await axios.post(`http://localhost:3000/api/textpost`, { ownerHash, textData });
+        const res = await axios.post(`${import.meta.env.VITE_SERVAR_URL}/api/textpost`, { ownerHash, textData });
         // console.log(res.data);
       } catch (err) {
         console.log(err);
@@ -114,7 +114,7 @@ const handleFile = async (file) => {
   formData.append('ownerHash', ownerHash);
 
   try {
-    const res =  await axios.post(`http://localhost:3000/api/textpost`, formData);
+    const res =  await axios.post(`${import.meta.env.VITE_SERVAR_URL}/api/textpost`, formData);
     
     toast.dismiss(toastId); // 🔥 Dismiss loading toast
     await fetchFiles()
@@ -180,7 +180,7 @@ const handleDownloadSelected = async () => {
 // Delete logic 
 const handleDeleteSelected = async () => {
   try {
-    await axios.post(`http://localhost:3000/api/deleteFiles`, {
+    await axios.post(`${import.meta.env.VITE_SERVAR_URL}/api/deleteFiles`, {
       ownerHash,
       filenames: selectedFiles
     });
@@ -240,8 +240,8 @@ const handleDeleteSelected = async () => {
             {/* Main Content */}
            {isText === "text" && ( <div className="w-full mx-6">
                 <h1 className="hidden lg:block sm:block mb:block text-4xl font-bold TEXT">Text</h1>
-                {loader ? <div class="flex items-center justify-center">
-                    <div class="mt-6 h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-t-transparent"></div>
+                {loader ? <div className="flex items-center justify-center">
+                    <div className="mt-6 h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-t-transparent"></div>
                      </div>: <TextArea onSendData={handleChildData} initialValue={textData} />
                   }
 
@@ -267,8 +267,8 @@ const handleDeleteSelected = async () => {
                   </div>
                 
                 
-                 {loader ? (<div class="flex items-center justify-center">
-                    <div class="mt-6 h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-t-transparent"></div>
+                 {loader ? (<div className="flex items-center justify-center">
+                    <div className="mt-6 h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-t-transparent"></div>
                      </div>) : (
                       showFile.length > 0 ?  <div className="w-full flex gap-3 mt-10 flex-wrap justify-center md:justify-start">
                  {showFile?.map((f, i) =>
