@@ -4,10 +4,16 @@ import cloudinary from 'cloudinary';
 import fs from 'fs-extra';
 
 // cloudinary config
+// cloudinary.config({
+//   cloud_name: 'dx0qmwrrz',
+//   api_key: '849214223577591',
+//   api_secret: '_sIKa0UtNClm2FkdLztVkykr6XU'
+// });
+
 cloudinary.config({
-  cloud_name: 'dx0qmwrrz',
-  api_key: '849214223577591',
-  api_secret: '_sIKa0UtNClm2FkdLztVkykr6XU'
+  cloud_name:`${process.env.CLOUD_NAME}`,
+  api_key:`${process.env.API_KEY}`,
+  api_secret:`${process.env.API_SECRET}`,
 });
 
 const textPostController = async (req, res) => {
