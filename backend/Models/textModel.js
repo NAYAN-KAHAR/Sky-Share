@@ -6,7 +6,7 @@ const contentSchema = new mongoose.Schema({
   ipGroup: String, // optional grouping by IP
   ownerHash: {
     type: String,
-    required: true,
+    required: true
   },
   // Store text if available
   text: String,

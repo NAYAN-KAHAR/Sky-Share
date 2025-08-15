@@ -22,7 +22,8 @@ const HomePage = () => {
     const [showFile, setShowFile] = useState([]);
     const [loader, setLoader] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState([]);
-    const  [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [spinner, setSpinner] = useState(false);
 
     const handleChildData = (data) => {
       setTextData(data);
@@ -94,13 +95,16 @@ useEffect(() => {
 
       
   
-    // ✅ Save text to server
+  // ✅ Save text to server
     const handleTextContent = async () => {
       if (!textData || textData.trim() === '') return;
-     
+      setSpinner(true);
       try {
         const res = await axios.post(`${import.meta.env.VITE_SERVAR_URL}/api/textpost`, { ownerHash, textData });
         // console.log(res.data);
+        if(res.data){
+          setSpinner(false);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -302,7 +306,8 @@ const handleDeleteSelected = async () => {
             <div className="flex justify-end mt-auto">
             <div className="flex gap-6">
                 <button onClick={handleClear}  className=" hover:text-red-600 cursor-pointer">Clear</button>
-                <button onClick={handleTextContent} className="bg-white font-bold text-2xl italic rounded-lg p-2 px-10 cursor-pointer border hover:text-blue-600 hover:border-blue-600">Save</button>
+                <button onClick={handleTextContent} className="bg-white font-bold text-2xl italic rounded-lg p-2 px-10 cursor-pointer border hover:text-blue-600 hover:border-blue-600">
+                {spinner ? 'Saving':'Save'}</button>
             </div>
             </div>
        )}
