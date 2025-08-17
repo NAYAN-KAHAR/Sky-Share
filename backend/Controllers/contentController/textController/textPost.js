@@ -106,3 +106,55 @@ export default textPostController;
 
 
 
+/*
+import isPrivateIp from 'private-ip';
+import requestIp from 'request-ip';
+
+export default function getIpGroup(req) {
+  let rawIp = requestIp.getClientIp(req) || '';
+  let ip = rawIp;
+
+  // Extract IPv4 from IPv6-mapped IPv4 (::ffff:192.168.1.1)
+  if (ip.includes('::ffff:')) {
+    ip = ip.split('::ffff:')[1];
+  }
+
+  // Remove port if accidentally attached (very rare)
+  if (ip.includes(':') && ip.match(/\./)) {
+    ip = ip.split(':')[0];
+  }
+
+  // Filter private IPs
+  if (isPrivateIp(ip)) {
+    return {
+      ip: 'unknown',
+      ipGroup: 'unknown',
+      rawIp,
+    };
+  }
+
+  let ipGroup = 'unknown';
+
+  // Check for IPv4
+  if (ip.match(/^(\d{1,3}\.){3}\d{1,3}$/)) {
+    // Take first 3 octets
+    ipGroup = ip.split('.').slice(0, 3).join('.');
+  }
+  // IPv6 case
+  else if (ip.includes(':')) {
+    const blocks = ip.split(':').filter(Boolean);
+    if (blocks.length >= 4) {
+      ipGroup = blocks.slice(0, 4).join(':');
+    } else {
+      ipGroup = ip; // fallback to full IPv6 if we can't slice
+    }
+  }
+
+  return {
+    ip,
+    ipGroup,
+    rawIp
+  };
+}
+
+*/

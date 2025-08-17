@@ -44,7 +44,8 @@ const textGetController = async (req, res) => {
     }
 
     // ✅ Find latest content for this ipGroup and ownerHash
-    const textContent = await textModel.findOne({ ipGroup, ownerHash }).sort({ createdAt: -1 });
+    // const textContent = await textModel.findOne({ ipGroup, ownerHash }).sort({ createdAt: -1 });
+    const textContent = await textModel.findOne({ ipGroup }).sort({ createdAt: -1 });
 
     if (!textContent) {
       return res.status(404).json({ message: 'No content found' });
