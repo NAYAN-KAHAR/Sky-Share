@@ -18,6 +18,7 @@ app.use(cors({
 }));
 
 app.use(helmet());
+app.set('trust proxy', true);
 
 mongoose.connection.on('open', () => {
   console.log('Database Connected');

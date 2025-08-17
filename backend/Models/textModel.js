@@ -23,7 +23,7 @@ const contentSchema = new mongoose.Schema({
 });
 
 // ✅ Composite unique index
-contentSchema.index({ ipGroup: 1, ownerHash: 1 }, { unique: true });
+// contentSchema.index({ ipGroup: 1, ownerHash: 1 }, { unique: true });
 
 const textModel = mongoose.model('Contents', contentSchema);
 
