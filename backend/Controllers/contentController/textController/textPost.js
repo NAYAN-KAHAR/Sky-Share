@@ -6,9 +6,9 @@ import isPrivateIp from 'private-ip'; // <- NEW: for filtering local IPs
 
 // Cloudinary config
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
+    cloud_name: 'dx0qmwrrz',
+    api_key: '849214223577591',
+    api_secret: '_sIKa0UtNClm2FkdLztVkykr6XU'
 });
 
 const textPostController = async (req, res) => {
