@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin:'*'
+  origin:'https://astonishing-lebkuchen-de4b42.netlify.app'
 }));
 
 app.use(helmet());
