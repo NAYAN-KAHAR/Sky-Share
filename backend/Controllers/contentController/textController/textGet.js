@@ -38,11 +38,6 @@ const textGetController = async (req, res) => {
     console.log('IP Group:', ipGroup);
 
 
-    // ✅ Check for required query parameter
-    if (!ownerHash) {
-      return res.status(400).json({ message: 'ownerHash query param is required' });
-    }
-
     // ✅ Find latest content for this ipGroup and ownerHash
     // const textContent = await textModel.findOne({ ipGroup, ownerHash }).sort({ createdAt: -1 });
     const textContent = await textModel.findOne({ ipGroup }).sort({ createdAt: -1 });

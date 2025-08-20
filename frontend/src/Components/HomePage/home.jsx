@@ -69,9 +69,7 @@ const fetchFiles = async () => {
   if (!ownerHash) return;
 
   try {
-    const res = await axios.get(`${import.meta.env.VITE_SERVAR_URL}/api/text`, {
-      params: { ownerHash },
-    });
+    const res = await axios.get(`${import.meta.env.VITE_SERVAR_URL}/api/text`);
     const files = res.data?.textContent?.files || [];
     setShowFile(files); 
 
